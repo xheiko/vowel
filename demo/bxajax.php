@@ -12,10 +12,11 @@ $APPLICATION->SetTitle("Module abramov.vowel: BX.ajax test");
 	<br>	
 	<div id="vowelresult" ></div>	
 	<br>	
-	<button class="ui-btn ui-btn-success-light" onclick="getUsernameVowels()" id="button-get" disabled>Получить гласные</button>
+	<button class="ui-btn ui-btn-success-light" onclick="getUsernameVowels()" id="button-get" disabled>Get Vowels</button>
 	
 <script>
-	window.onload = function(e){ 
+	window.onload = function(e)
+	{ 
 		document.getElementById("button-get").disabled = false;
 	}
 	
@@ -23,16 +24,17 @@ $APPLICATION->SetTitle("Module abramov.vowel: BX.ajax test");
 	{	
 		document.getElementById("button-get").disabled = true;
 		BX.ajax.runAction('abramov:vowel.VowelAjax.getUserNameVowels',{data:{id:document.getElementById("userid-input").value}}).then(
-			function (response) {
+			function (response) 
+			{
 				console.log(response);
 				var el = document.getElementById('vowelresult');
 				el.textContent = '(' + document.getElementById("userid-input").value+') ' + response.data.vowels;	
 				document.getElementById("button-get").disabled = false;
 			},
-			function (response) {
+			function (response) 
+			{
 				console.log(response);
 				var el = document.getElementById('vowelresult');
-				// el.textContent = 'Error' ;	
 				el.textContent = 'Error ' + response.errors[0]['message'];	
 				document.getElementById("button-get").disabled = false;
 			},
